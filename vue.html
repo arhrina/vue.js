@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        {{test}}
+    </div>
+
+    {{message}} <!-- scope 밖이라서 미동작 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <script>
+
+        Vue.config.devtools = true;
+
+        var vm = new Vue({
+            el: '#app', // element를 new Vue를 통해 붙여줄 경우 해당 element에 vue가 접근해 사용할 수 있게 된다. 해당 element 범위 밖에서는 vue 동작하지 않음
+            data: { // data에 생성하는 key로 html에 입력해 사용
+                message: 'hello',
+                test: 'TEST'
+            }
+        });
+        
+    </script>
+</body>
+</html>

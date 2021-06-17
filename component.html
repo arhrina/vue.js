@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <app-header></app-header>
+
+        {{test}}
+
+        <app-loc></app-local>
+    </div>
+
+    <div id="f2">
+        <f2-component></f2-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <script>
+        Vue.config.devtools = true;
+
+        // 전역 컴포넌트를 만드는 법. 전역으로 사용되어야하는 플러그인이나 라이브러리에만 사용된다
+        Vue.component('app-header', { // 해당 명칭의 컴포넌트는
+            template: '<h1>Header</h1>' // 등록한 템플릿으로 화면에 뿌려진다
+        });
+        
+
+        //
+
+    // 별도로 컴포넌트를 지정하지 않으면, Root 컴포넌트로 지정된다
+        new Vue({
+            el: 'div#app',
+
+            // 지역 컴포넌트 만드는 법. 서비스의 컴포넌트들 구현에 사용
+            components: {
+                'app-loc': {
+                    template: '<div>Local component</div>'
+                }
+            },
+            data: {
+                test: '이건 Vue 생성자 함수로 생성되는 root component의 영역'
+            }
+        });
+
+        new Vue({
+            el: 'div#f2',
+            components: {
+                'f2-component': {
+                    template: "<div>This is second root's local component</div>"
+                }
+            }
+        })
+    </script>
+</body>
+</html>
